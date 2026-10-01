@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="76acb598-6ad9-4caf-9849-b771d342a0d3" >
-		<db:my-sql-connection host="localhost" port="3306" user="root" password="6Uf7cj63V*mpzQJ"/>
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="6Uf7cj63V*mpzQJ" database="my_first_database"/>
 	</db:config>
 	<flow name="emp-sapiFlow" doc:id="d15dac9b-b9b7-49b7-bb6a-9949c6effe03" >
 		<http:listener doc:name="Create Employee Listener" doc:id="6a443d72-18ba-47ae-956f-b8c859dc9f48" config-ref="HTTP_Listener_config" path="create-employee"/>

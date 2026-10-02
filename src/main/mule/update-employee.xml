@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="update-employeeFlow" doc:id="9f0720b1-4b70-406b-bdf2-96a60a4974b8" >
+		<http:listener doc:name="Update Employee Listener" doc:id="2f430190-440e-45b6-a88d-f0461938abdd" config-ref="HTTP_Listener_config" path="update-employee" allowedMethods="PUT"/>
+		<logger level="INFO" doc:name="Start Log" doc:id="94aef985-2858-46d3-ac60-085bec08ea91" message="Started update employee flow"/>
+		<db:update doc:name="Update" doc:id="a228e8c0-76a1-4dba-a3d8-ff308fd15118" config-ref="Database_Config">
+			<db:sql ><![CDATA[update emp set emp_status=:empStatus where emp_id=:empID]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	empStatus: payload.employee.employeestatus,
+	empID: payload.employee.employeeID
+}]]]></db:input-parameters>
+		</db:update>
+	</flow>
+</mule>

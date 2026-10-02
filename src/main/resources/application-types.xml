@@ -11,12 +11,24 @@ type success_response = {|
 
 ]]></types:shape>
     </types:type>
+    <types:type name="update-employee-response" format="xml">
+      <types:example format="xml" element="response" location="examples/update-employee-response.xml"/>
+    </types:type>
   </types:catalog>
   <types:enrichment select="#221f980d-187e-47a8-a374-bd4afd7ce0a5">
     <types:processor-declaration>
       <types:output-event>
         <types:message>
           <types:payload type="success-response"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#279fb38d-7e91-4bba-b48a-e545884b9175">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="update-employee-response"/>
         </types:message>
       </types:output-event>
     </types:processor-declaration>

@@ -14,6 +14,13 @@ type success_response = {|
     <types:type name="update-employee-response" format="xml">
       <types:example format="xml" element="response" location="examples/update-employee-response.xml"/>
     </types:type>
+    <types:type name="get-employees-response" format="json">
+      <types:shape format="weave" example="examples/get-employees-response.json"><![CDATA[%dw 2.0
+
+type get_employees_response = Array<{|  employeeID: Number {"typeId": "int"},   employeeName: String,   employeeStatus: String|}> {"example": "[{\\\"employeeID\\\":100,\\\"employeeName\\\":\\\"Chinna\\\",\\\"employeeStatus\\\":\\\"A\\\"},{\\\"employeeID\\\":101,\\\"employeeName\\\":\\\"John\\\",\\\"employeeStatus\\\":\\\"A\\\"}]"}
+
+]]></types:shape>
+    </types:type>
   </types:catalog>
   <types:enrichment select="#221f980d-187e-47a8-a374-bd4afd7ce0a5">
     <types:processor-declaration>
@@ -29,6 +36,15 @@ type success_response = {|
       <types:output-event>
         <types:message>
           <types:payload type="update-employee-response"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#9c21491e-bf90-4956-b1b9-52c04de10dd6">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get-employees-response"/>
         </types:message>
       </types:output-event>
     </types:processor-declaration>

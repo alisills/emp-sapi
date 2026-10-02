@@ -12,7 +12,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<db:update doc:name="Update" doc:id="a228e8c0-76a1-4dba-a3d8-ff308fd15118" config-ref="Database_Config">
 			<db:sql ><![CDATA[update emp set emp_status=:empStatus where emp_id=:empID]]></db:sql>
 			<db:input-parameters ><![CDATA[#[{
-	empStatus: payload.employee.employeestatus,
+	empStatus: payload.employee.employeeStatus,
 	empID: payload.employee.employeeID
 }]]]></db:input-parameters>
 		</db:update>
